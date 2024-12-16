@@ -30,12 +30,14 @@ if matrixStr:
 	    for j in range(1, 7, 2):
 	        if matrixF[i][j] == 0:
 	            area_3_odd_cols_zero_count += 1
+	print(f"количество нулей в нечетных столбцах области 3: {area_3_odd_cols_zero_count}")
 
 	# Вычисляем сумму чисел в четных строках области 1
 	area_1_even_rows_sum = 0
 	for i in range(2):
 	    for j in range(0, 7, 2):
 	        area_1_even_rows_sum += matrixF[i][j]
+	print(f"сумма чисел в четных строках области 1: {area_1_even_rows_sum}")
 
     # Проверяем условие
 	if area_3_odd_cols_zero_count > area_1_even_rows_sum:
