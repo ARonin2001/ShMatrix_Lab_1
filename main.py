@@ -32,55 +32,65 @@ if matrixStr:
 		matrixA.append(matrixStr[i].split(" "))
 
 	stringToIntMatrixElements(matrixA)
-	matrixF = [row[:] for row in matrixA] 
+	matrixF = [row[:] for row in matrixA]
+
+	print("матрица А:")
+	for row in matrixA:
+		print(row)
+	print("\n")
+
+	print("матрица F:")
+	for row in matrixF:
+		print(row)
+	print("\n")
 
 	# Вычисляем количество нулей в нечетных столбцах области 3
 	area_3_odd_cols_zero_count = 0
 	for i in range(4, 7):
-	    for j in range(1, 7, 2):
-	        if matrixF[i][j] == 0:
-	            area_3_odd_cols_zero_count += 1
+		for j in range(1, 7, 2):
+			if matrixF[i][j] == 0:
+				area_3_odd_cols_zero_count += 1
 	print(f"количество нулей в нечетных столбцах области 3: {area_3_odd_cols_zero_count}")
 
 	# Вычисляем сумму чисел в четных строках области 1
 	area_1_even_rows_sum = 0
 	for i in range(2):
-	    for j in range(0, 7, 2):
-	        area_1_even_rows_sum += matrixF[i][j]
+		for j in range(0, 7, 2):
+			area_1_even_rows_sum += matrixF[i][j]
 	print(f"сумма чисел в четных строках области 1: {area_1_even_rows_sum}")
 
-    # Проверяем условие
+	# Проверяем условие
 	if area_3_odd_cols_zero_count > area_1_even_rows_sum:
-	    # Меняем симметрично области 2 и 3 местами
-	    for j in range(7):
-	        matrixF[2][j], matrixF[4][j] = matrixF[4][j], matrixF[2][j]
-	    print("\nОбмен областей 2 и 3 симметрично:")
-	    for row in matrixF:
-	        print(row)
+		# Меняем симметрично области 2 и 3 местами
+		for j in range(7):
+			matrixF[2][j], matrixF[4][j] = matrixF[4][j], matrixF[2][j]
+		print("\nОбмен областей 2 и 3 симметрично:")
+		for row in matrixF:
+			print(row)
 	else:
-	    # Меняем несимметрично области 3 и 4 местами
-	    for j in range(7):
-	        matrixF[4][j] = matrixF[5][j]
-	        matrixF[5][j] = matrixF[4][j]
-	    print("\nОбмен областей 3 и 4 несимметрично:")
-	    for row in matrixF:
-	        print(row)
+		# Меняем несимметрично области 3 и 4 местами
+		for j in range(7):
+			matrixF[4][j] = matrixF[5][j]
+			matrixF[5][j] = matrixF[4][j]
+		print("\nОбмен областей 3 и 4 несимметрично:")
+		for row in matrixF:
+			print(row)
 
     # Вычисляем транспонированную матрицу F
 	FT = [[matrixF[j][i] for j in range(7)] for i in range(7)]
 	print("\nТранспонированная матрица F:")
 	for row in FT:
-	    print(row)
+		print(row)
 
 	# Вычисляем выражение A*F-K*F T
 	result = [[0 for _ in range(7)] for _ in range(7)]
 	for i in range(7):
-	    for j in range(7):
-	        for k in range(7):
-	            result[i][j] += matrixA[i][k] * matrixF[k][j] - K * FT[k][j]
+		for j in range(7):
+			for k in range(7):
+				result[i][j] += matrixA[i][k] * matrixF[k][j] - K * FT[k][j]
 
 	print("\nРезультат выражения A*F-K*F T:")
 	for row in result:
-	    print(row)
+		print(row)
 else:
 	print("The marix is empty")
